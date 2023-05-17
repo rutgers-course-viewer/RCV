@@ -4,6 +4,8 @@
   "description": "Rutgers Course Viewer (RCV) - an open source alternative to Rutgers SOC thats more aesthetically-pleasing and eye-friendly",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +17,8 @@
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^20.1.7",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
 }
