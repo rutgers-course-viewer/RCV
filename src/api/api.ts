@@ -9,7 +9,11 @@ router.get("/", (_, res: Response) => {
   res.send("Welcome to API");
 });
 
-router.get("/course/:course", async (req: any, res: Response) => {
+type customResponse = {
+  params: { [key: string]: string };
+};
+
+router.get("/course/:course", async (req: customResponse, res: Response) => {
   const courseName = req.params.course;
   logger.info(`Requested Course: ${courseName}`);
   const course = await courseModel.findOne({ title: courseName }).exec();
