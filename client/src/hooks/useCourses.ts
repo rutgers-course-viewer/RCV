@@ -1,8 +1,17 @@
 import useSWR from "swr";
 
-const filterWords = ["II", "III", "IV", "VI", "VII", "IX", "XI"];
-
+/**
+ * Converts official course titles to title case
+ *
+ * @example
+ * const exposWriting = convertToTitleCase("EXPOSITORY WRITING I") // Returns "Expository Writing I"
+ *
+ * @param courseTitle The original all caps course title
+ * @returns The title converted to title case, ignoring roman numerals
+ */
 function convertToTitleCase(courseTitle: string) {
+  const filterWords = ["II", "III", "IV", "VI", "VII", "IX", "XI"];
+
   return courseTitle
     .trim()
     .split(" ")
