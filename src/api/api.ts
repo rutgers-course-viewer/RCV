@@ -30,7 +30,7 @@ router.get("/course/:course", async (req: Request, res: Response) => {
 router.get("/course/", async (_, res: Response) => {
   logger.info(`Requested all courses`);
 
-  const courses = courseModel.find({}).exec();
+  const courses = courseModel.find({}, { _id: 0, title: 1 }).exec();
 
   courses
     .then((foundCourses) => {
