@@ -17,7 +17,8 @@ export async function updateDB() {
     for (const course of data) {
       courseModel
         .updateOne({ title: course.title }, course, {
-          upsert: true
+          upsert: true,
+          new: true
         })
         .exec();
     }
