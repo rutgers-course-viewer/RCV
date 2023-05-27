@@ -7,7 +7,8 @@
     "start": "nodemon src/index.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "tsc && node build/index.js"
+    "prod": "tsc && node build/index.js",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -24,9 +25,14 @@
     "@typescript-eslint/parser": "^5.59.6",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
