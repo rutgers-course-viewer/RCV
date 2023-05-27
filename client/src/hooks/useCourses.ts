@@ -29,7 +29,7 @@ interface MinimalCourse {
   title: string;
 }
 
-async function fetcher<JSON = any>(
+async function fetcher<JSON = unknown>(
   input: RequestInfo,
   init?: RequestInit
 ): Promise<JSON> {
