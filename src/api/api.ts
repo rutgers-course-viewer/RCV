@@ -1,4 +1,4 @@
-import express, { Response } from "express";
+import express, { Request, Response } from "express";
 import { logger } from "../logger";
 import { courseModel } from "./courseSchema";
 import { updateDB, updateDBInterval } from "./updateDb";
@@ -9,7 +9,7 @@ router.get("/", (_, res: Response) => {
   res.send("Welcome to API");
 });
 
-router.get("/course/:course", async (req: any, res: Response) => {
+router.get("/course/:course", async (req: Request, res: Response) => {
   const courseName = req.params.course;
   logger.info(`Requested Course: ${courseName}`);
   const course = await courseModel.findOne({ title: courseName }).exec();
