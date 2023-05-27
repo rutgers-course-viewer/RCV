@@ -1,18 +1,10 @@
 import "./App.css";
-import useSWR from "swr";
-
-async function fetcher<JSON = any>(
-  input: RequestInfo,
-  init?: RequestInit
-): Promise<JSON> {
-  const res = await fetch(input, init);
-  return res.json() as Promise<JSON>;
-}
+import { useCourses } from "./hooks/useCourses";
 
 function App() {
-  const { data, error, isLoading } = useSWR("/api/course", fetcher);
+  const { courses, isError, isLoading } = useCourses();
 
-  if (error) {
+  if (isError) {
     return <div>Failed to load courses!</div>;
   }
 
@@ -20,7 +12,7 @@ function App() {
     return <div>Loading courses...</div>;
   }
 
-  console.log(data);
+  console.log(courses);
 
   return (
     <>
