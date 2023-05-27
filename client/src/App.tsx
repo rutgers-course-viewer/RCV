@@ -12,11 +12,14 @@ function App() {
     return <div>Loading courses...</div>;
   }
 
-  console.log(courses);
-
   return (
     <>
       <h1 className="text-3xl">Rutgers Course Viewer</h1>
+      <ul>
+        {courses?.map((course, i) => (
+          <li key={i}>Title: {course.title}</li>
+        ))}
+      </ul>
     </>
   );
 }
