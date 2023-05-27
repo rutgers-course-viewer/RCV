@@ -8,7 +8,7 @@ const dbUrl = process.env.DB_URL;
 
 mongoose
   .connect(dbUrl || "", {
-    dbName: "RCV-test"
+    dbName: "RCV-test",
   })
   .then(() => logger.info("Connected to database"))
   .catch((err) => logger.error(err));
