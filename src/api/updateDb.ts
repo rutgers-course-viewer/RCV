@@ -14,12 +14,16 @@ export async function updateDB() {
     const data = await response.json();
     logger.info("Retrieved data from Rutgers");
 
-    for (const course of data) {
-      //logger.info(course);
-      await courseModel.updateOne({ title: course.title }, course, {
-        upsert: true
-      });
-    }
+    // TODO: map cour
+    const coursePromises = data.map((course: any) =>
+      courseModel
+        .updateOne({ title: course.title }, course, {
+          upsert: true,
+        })
+        .exec()
+    );
+
+    await Promise.all(coursePromises);
 
     logger.info("Updated database");
   }
