@@ -7,8 +7,6 @@ dotenv.config();
 const dbUrl = process.env.DB_URL;
 const dbName = process.env.DB_NAME;
 
-logger.info(dbName || "");
-
 mongoose
   .connect(dbUrl || "", {
     dbName: dbName || ""
