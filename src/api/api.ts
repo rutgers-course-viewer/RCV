@@ -12,8 +12,37 @@ router.get("/", (_, res: Response) => {
 router.get("/course/:course", async (req: Request, res: Response) => {
   const courseName = req.params.course;
   logger.info(`Requested Course: ${courseName}`);
-  const course = await courseModel.findOne({ title: courseName }).exec();
-  res.send(course);
+  const course = courseModel.findOne({ title: courseName }).exec();
+
+  course
+    .then((foundCourse) => {
+      if (foundCourse) {
+        res.send(foundCourse);
+      } else {
+        res.send({ error: "Course not found" });
+      }
+    })
+    .catch(() => {
+      res.send({ error: "An error occurred while searching for the course" });
+    });
+});
+
+router.get("/course/", async (_, res: Response) => {
+  logger.info(`Requested all courses`);
+
+  const courses = courseModel.find({}).exec();
+
+  courses
+    .then((foundCourses) => {
+      if (foundCourses.length > 0) {
+        res.send(foundCourses);
+      } else {
+        res.send({ error: "No courses found" });
+      }
+    })
+    .catch(() => {
+      res.send({ error: "An error occurred while retrieving courses" });
+    });
 });
 
 // Call the updateDB function immediately
