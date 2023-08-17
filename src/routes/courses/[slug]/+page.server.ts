@@ -7,5 +7,9 @@ export async function load({ params }) {
 	logger.info(`Requested Course: ${courseName}`);
 	const course = await prisma.course.findUnique({ where: { title: courseName } });
 
-	return { error: false, message: 'debug', course: course };
+	if (!course) {
+		return { error: true };
+	} else {
+		return { course: course };
+	}
 }

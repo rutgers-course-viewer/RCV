@@ -29,7 +29,7 @@
 
 			<div class="grid grid-cols-8 gap-2 relative" style="grid-template-rows: repeat(145, 1fr)">
 				<!-- Time Legend -->
-				<div class="border-r" id="timeLegend"></div>
+				<div class="border-r" id="timeLegend" />
 
 				<!-- Days and Example Events -->
 				<div class="border-r relative">
