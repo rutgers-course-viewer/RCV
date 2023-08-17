@@ -1,5 +1,5 @@
 import { logger } from './src/lib/logger';
-import { courseModel } from './src/lib/courseSchema';
+import prisma from './src/lib/prisma';
 
 export async function updateDB() {
 	logger.info('Starting dB update');
@@ -14,13 +14,12 @@ export async function updateDB() {
 		const data = await response.json();
 		logger.info('Retrieved data from Rutgers');
 
-		for (const course of data) {
-			courseModel
-				.updateOne({ title: course.title }, course, {
-					upsert: true,
-					new: true
-				})
-				.exec();
+		for (const entry of data) {
+			await prisma.course.upsert({
+				where: { title: entry.title },
+				update: { courseNumber: parseInt(entry.courseNumber) },
+				create: { title: entry.title, courseNumber: parseInt(entry.courseNumber) }
+			});
 		}
 
 		logger.info('Updated database');
