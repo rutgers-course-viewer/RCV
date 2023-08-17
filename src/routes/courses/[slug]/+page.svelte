@@ -3,9 +3,9 @@
 	export let data;
 </script>
 
-{#if data.error}
-	<h1>Unable to find course</h1>
-{:else}
+{#if data.course}
 	Course Title: {data.course.title} <br />
 	Course Number: {data.course.courseNumber}
+{:else}
+	Course not found
 {/if}

@@ -1,5 +1,5 @@
-import prisma from '$lib/prisma.js';
-import { logger } from '$lib/logger';
+import prisma from '$lib/server/prisma.js';
+import { logger } from '$lib/server/logger';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
@@ -7,9 +7,5 @@ export async function load({ params }) {
 	logger.info(`Requested Course: ${courseName}`);
 	const course = await prisma.course.findUnique({ where: { title: courseName } });
 
-	if (!course) {
-		return { error: true };
-	} else {
-		return { course: course };
-	}
+	return { course: course };
 }

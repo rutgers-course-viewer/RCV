@@ -1,5 +1,5 @@
-import { logger } from '../src/lib/logger';
-import prisma from '../src/lib/prisma';
+import { logger } from '$lib/server/logger';
+import prisma from '$lib/server/prisma';
 
 export async function updateDB() {
 	logger.info('Starting dB update');
@@ -29,3 +29,6 @@ export async function updateDB() {
 export function updateDBInterval() {
 	setInterval(updateDB, 60000);
 }
+
+updateDB();
+updateDBInterval();
