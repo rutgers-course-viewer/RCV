@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Week Calendar in TailwindCSS</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			.event {
+				position: absolute;
+				background-color: rgba(100, 210, 255, 0.8);
+				border-radius: 3px;
+				padding: 0.2rem;
+				width: calc(100% - 1rem);
+				left: 0.5rem;
+				z-index: 10;
+			}
+		</style>
+	</head>
+
+	<body class="bg-gray-100 p-8">
+		<div class="bg-white p-5 rounded-lg shadow-lg max-w-full mx-auto overflow-x-auto relative">
+			<header class="text-center mb-4">
+				<h2 class="text-xl font-semibold mb-4">Week of August 1 - 7, 2023</h2>
+			</header>
+
+			<div class="grid grid-cols-8 gap-2 relative" style="grid-template-rows: repeat(145, 1fr)">
+				<!-- Time Legend -->
+				<div class="border-r" id="timeLegend"></div>
+
+				<!-- Days and Example Events -->
+				<div class="border-r relative">
+					<div class="absolute top-0 left-0 w-full text-center">Sunday</div>
+					<div class="event" style="top: 5%; height: 12%">Event A</div>
+				</div>
+				<div class="border-r relative">
+					<div class="absolute top-0 left-0 w-full text-center">Monday</div>
+					<div class="event" style="top: 15%; height: 6%">Event B</div>
+				</div>
+				<!-- ... Continue for other days -->
+			</div>
+		</div>
+
+		<script>
+			// Generate time legend dynamically
+			const timeLegendContainer = document.getElementById('timeLegend');
+			for (let i = 0; i < 144; i++) {
+				const timeDiv = document.createElement('div');
+				timeDiv.className = 'h-full border-b flex items-center justify-end pr-2';
+				if (i % 6 === 0) {
+					timeDiv.textContent = `${i / 6}:00 ${i / 6 < 12 ? 'AM' : 'PM'}`;
+				}
+				timeLegendContainer.appendChild(timeDiv);
+			}
+		</script>
+	</body>
+</html>
