@@ -18,7 +18,11 @@ export async function updateDB() {
 			await prisma.course.upsert({
 				where: { title: entry.title },
 				update: { courseNumber: parseInt(entry.courseNumber) },
-				create: { title: entry.title, courseNumber: parseInt(entry.courseNumber) }
+				create: {
+					title: entry.title,
+					expandedTitle: entry.expandedTitle,
+					courseNumber: parseInt(entry.courseNumber)
+				}
 			});
 		}
 
