@@ -17,9 +17,15 @@ export async function updateDB() {
 		for (const entry of data) {
 			await prisma.course.upsert({
 				where: { title: entry.title },
-				update: { courseNumber: parseInt(entry.courseNumber) },
+				update: {
+					title: entry.title,
+					subject: entry.subject,
+					expandedTitle: entry.expandedTitle,
+					courseNumber: parseInt(entry.courseNumber)
+				},
 				create: {
 					title: entry.title,
+					subject: entry.subject,
 					expandedTitle: entry.expandedTitle,
 					courseNumber: parseInt(entry.courseNumber)
 				}

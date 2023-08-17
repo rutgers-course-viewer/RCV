@@ -1,7 +1,6 @@
 import prisma from '$lib/server/prisma.js';
 import { logger } from '$lib/server/logger';
 
-/** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
 	const courseName = params.slug;
 	logger.info(`Requested Course: ${courseName}`);
