@@ -22,16 +22,20 @@
 	}
 </script>
 
-{#if data.course}
-	Course Title: {data.course.title} <br />
-	Course String: {data.course.courseString} <br />
-	Course Expanded Title: {data.course.expandedTitle} <br />
-	Course Number: {data.course.courseNumber}<br />
-	Course Credits: {data.course.credits}<br />
-	Course Subject: {data.course.subject} <br />
-	Course Locations: {courseLocations} <br />
-	<br />
-	<br />
-{:else}
-	Course not found
-{/if}
+<div class="p-4 bg-white shadow-md rounded-md">
+	{#if data.course}
+		<div class="text-2xl font-semibold mb-4">
+			{data.course.title}
+		</div>
+		<div class="space-y-2">
+			<div><span class="font-medium">Course String:</span> {data.course.courseString}</div>
+			<div><span class="font-medium">Expanded Title:</span> {data.course.expandedTitle}</div>
+			<div><span class="font-medium">Course Number:</span> {data.course.courseNumber}</div>
+			<div><span class="font-medium">Credits:</span> {data.course.credits}</div>
+			<div><span class="font-medium">Subject:</span> {data.course.subject}</div>
+			<div><span class="font-medium">Locations:</span> {courseLocations}</div>
+		</div>
+	{:else}
+		<div class="text-xl font-medium text-red-600">Course not found</div>
+	{/if}
+</div>
