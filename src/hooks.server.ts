@@ -18,16 +18,56 @@ export async function updateDB() {
 			await prisma.course.upsert({
 				where: { title: entry.title },
 				update: {
-					title: entry.title,
 					subject: entry.subject,
+					openSections: parseInt(entry.openSections),
+					synopsisUrl: entry.synopsisUrl,
+					title: entry.title,
+					preReqNotes: entry.preReqNotes,
+					courseString: entry.courseString,
+					credits: parseFloat(entry.credits) || 0,
+					subjectDescription: entry.subjectDescription,
 					expandedTitle: entry.expandedTitle,
-					courseNumber: parseInt(entry.courseNumber)
+					mainCampus: entry.mainCampus,
+					subjectNotes: entry.subjectNotes,
+					courseNumber: parseInt(entry.courseNumber),
+					level: entry.level,
+					campusCode: entry.campusCode,
+					subjectGroupNotes: entry.subjectGroupNotes,
+					offeringUnitCode: entry.offeringUnitCode,
+					offeringUnitTitle: entry.offeringUnitTitle || '',
+					courseDescription: entry.courseDescription,
+					supplementCode: entry.supplementCode,
+					unitNotes: entry.unitNotes,
+					courseNote: entry.courseNote || '',
+					campusLocations: entry.campusLocations.map((campusLocation: { code: string }) => {
+						return campusLocation.code;
+					})
 				},
 				create: {
-					title: entry.title,
 					subject: entry.subject,
+					openSections: parseInt(entry.openSections),
+					synopsisUrl: entry.synopsisUrl,
+					title: entry.title,
+					preReqNotes: entry.preReqNotes,
+					courseString: entry.courseString,
+					credits: parseInt(entry.credits) || 0,
+					subjectDescription: entry.subjectDescription,
 					expandedTitle: entry.expandedTitle,
-					courseNumber: parseInt(entry.courseNumber)
+					mainCampus: entry.mainCampus,
+					subjectNotes: entry.subjectNotes,
+					courseNumber: parseInt(entry.courseNumber),
+					level: entry.level,
+					campusCode: entry.campusCode,
+					subjectGroupNotes: entry.subjectGroupNotes,
+					offeringUnitCode: entry.offeringUnitCode,
+					offeringUnitTitle: entry.offeringUnitTitle || '',
+					courseDescription: entry.courseDescription,
+					supplementCode: entry.supplementCode,
+					unitNotes: entry.unitNotes,
+					courseNote: entry.courseNote || '',
+					campusLocations: entry.campusLocations.map((campusLocation: { code: string }) => {
+						return campusLocation.code;
+					})
 				}
 			});
 		}
@@ -42,3 +82,13 @@ export function updateDBInterval() {
 
 updateDB();
 updateDBInterval();
+
+/**
+ * campusLocations: {
+						createMany: {
+							data: entry.campusLocations.map((campusLocation: campusLocation) => {
+								return { code: campusLocation.code, description: campusLocation.description };
+							})
+						}
+					}
+ */
