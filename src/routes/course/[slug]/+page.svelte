@@ -12,7 +12,7 @@
 		S: 'Study Abroad',
 		Z: 'Off-Campus'
 	};
-	let courseLocations: string[];
+	let courseLocations: string;
 	if (data.course) {
 		courseLocations = data.course.campusLocations
 			.map((item: string) =>
