@@ -14,7 +14,7 @@
 		) ||
 			false);
 
-	$: shortcut = `${isMac ? '⌘' : '^'} + K`;
+	$: shortcut = browser ? `(${isMac ? '⌘' : '^'} + K)` : '';
 
 	let inputEl: HTMLInputElement | undefined;
 	let isInputFocused = false;
@@ -53,7 +53,7 @@
 						transition-all duration-150
             placeholder:text-sm placeholder:text-gray-500
 					  focus:border focus:border-gray-500 focus:bg-gray-800 focus:ring-gray-500"
-			placeholder="search courses, professors, subjects ({shortcut})"
+			placeholder="search courses, professors, subjects {shortcut}"
 		/>
 	</div>
 	<button
