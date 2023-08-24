@@ -22,20 +22,22 @@
 	// Focus on input when Cmd/Ctrl + K is pressed
 	$: handleKeyDown = (event: KeyboardEvent) => {
 		if (event.key === 'k' && (isMac ? event.metaKey : event.ctrlKey)) {
-			isInputFocused = true;
+			inputEl?.focus();
 		} else if (isInputFocused && event.key === 'Escape') {
-			isInputFocused = false;
+			inputEl?.blur();
 		}
 	};
 
-	$: if (isInputFocused) {
-		inputEl?.focus();
-	} else {
-		inputEl?.blur();
-	}
+	const onInputFocus = () => {
+		isInputFocused = true;
+	};
+
+	const onInputBlur = () => {
+		isInputFocused = false;
+	};
 </script>
 
-<svelte:window on:keydown|preventDefault={handleKeyDown} />
+<svelte:window on:keydown={handleKeyDown} />
 
 <div class="flex h-16 w-full items-center gap-2 border-b border-b-gray-700 px-6 py-2">
 	<div class="relative grow">
@@ -44,6 +46,8 @@
 		</div>
 		<input
 			bind:this={inputEl}
+			on:focus={onInputFocus}
+			on:blur={onInputBlur}
 			type="text"
 			class="border-transparent block h-10 w-full overflow-hidden rounded border bg-gray-900 pl-10 text-sm text-gray-300 caret-gray-300 outline-none
 						transition-all duration-150
