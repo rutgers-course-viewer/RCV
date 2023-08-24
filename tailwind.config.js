@@ -3,6 +3,7 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		colors: {
+			transparent: 'transparent',
 			// Rutgers red
 			primary: '#CA0037',
 			// True gray from Figma extended tailwind color palette
