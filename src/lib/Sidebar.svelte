@@ -11,7 +11,7 @@
 	import HeroiconsUserGroup from '~icons/heroicons/user-group';
 </script>
 
-<div class="flex h-screen w-60 flex-col border-r border-r-gray-700">
+<div class="flex h-screen w-60 shrink-0 flex-col border-r border-r-gray-700">
 	<div class="flex grow flex-col gap-8 px-4 py-6">
 		<div class="flex gap-3">
 			<div class="flex items-center justify-center rounded-full bg-gray-800 p-2">
