@@ -39,7 +39,9 @@
 
 <svelte:window on:keydown={handleKeyDown} />
 
-<div class="flex h-16 w-full items-center gap-2 border-b border-b-gray-700 px-6 py-2">
+<div
+	class="sticky top-0 flex h-16 w-full items-center gap-2 border-b border-b-gray-700 bg-gray-900 px-6 py-2"
+>
 	<div class="relative grow">
 		<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center p-2">
 			<HeroiconsMagnifyingGlass20Solid class="text-primary" />
