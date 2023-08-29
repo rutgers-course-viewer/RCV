@@ -77,7 +77,7 @@ export async function updateDB() {
 }
 
 export function updateDBInterval() {
-	setInterval(updateDB, 60000);
+	setInterval(updateDB, 60000 * 60 * 24);
 }
 
 updateDB();
