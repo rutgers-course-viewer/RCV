@@ -2,14 +2,20 @@ export type calEvent = {
 	start: string;
 	end: string;
 	title: string;
-	startRow?: number;
-	endRow?: number;
-	rowSpan?: number;
-	startString?: string;
-	endString?: string;
 };
 
-export let events: calEvent[] = [
+export type calComponent = {
+	start: string;
+	end: string;
+	title: string;
+	startRow: number;
+	endRow: number;
+	rowSpan: number;
+	startString: string;
+	endString: string;
+};
+
+const calEvents: calEvent[] = [
 	{
 		start: '08:00',
 		end: '09:00',
@@ -18,22 +24,22 @@ export let events: calEvent[] = [
 	{
 		start: '09:30',
 		end: '10:00',
-		title: 'Event 2',
+		title: 'Event 2'
 	},
 	{
 		start: '14:00',
 		end: '16:30',
-		title: 'Event 3',
+		title: 'Event 3'
 	},
 	{
-		start: '18:15',
-		end: '22:30',
-		title: 'Event 3',
+		start: '18:10',
+		end: '22:55',
+		title: 'Event 3'
 	}
 	// ... more events
 ];
 
-events = events.map((event) => {
+export const events: calComponent[] = calEvents.map((event) => {
 	const [startHour, startMinute] = event.start.split(':').map(Number);
 	const [endHour, endMinute] = event.end.split(':').map(Number);
 

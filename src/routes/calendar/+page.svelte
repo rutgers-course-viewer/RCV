@@ -3,10 +3,10 @@
 
 	const bgColors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500'];
 
-	import type { calEvent } from './events';
-	import { events } from './events';
+	import type { calComponent } from './events.js';
+	import { events } from './events.js';
 
-	function getEventStyle(event: calEvent) {
+	function getEventStyle(event: calComponent) {
 		return `grid-row-start: ${event.startRow + 1}; grid-row-end: ${event.endRow + 1}; z-index: 2;`;
 	}
 </script>
@@ -21,27 +21,27 @@
 
 	<body>
 		<div
-			class="container mx-auto max-w-screen-xl mt-10 shadow-lg border-[1px] rounded-lg border-black"
+			class="container mx-auto mt-10 max-w-screen-xl rounded-lg border-[1px] border-black shadow-lg"
 		>
-			<h1 class="text-4xl font-bold my-8 text-center">Class Calendar</h1>
-			<div class="flex flex-row h-10 w-full">
-				<div class="flex-none w-20">
+			<h1 class="my-8 text-center text-4xl font-bold">Class Calendar</h1>
+			<div class="flex h-10 w-full flex-row">
+				<div class="w-20 flex-none">
 					&nbsp;
 					<!-- Add more time slots here, making sure to set a fixed height -->
 				</div>
-				<div class="flex flex-row w-full">
+				<div class="flex w-full flex-row">
 					{#each weekdays as day}
-						<div class="text-center flex-1">
+						<div class="flex-1 text-center">
 							<div class="font-bold">{day}</div>
 						</div>
 					{/each}
 				</div>
 			</div>
-			<div class="flex relative h-[1024px]">
-				<div class="grid time-grid-rows grid-flow-row w-20 flex-none h-full">
+			<div class="relative flex h-[1024px]">
+				<div class="time-grid-rows grid h-full w-20 flex-none grid-flow-row">
 					<!-- Time slots -->
 					{#each { length: 15 } as _, i}
-						<div class="mx-auto border-top flex-none">
+						<div class="border-top mx-auto flex-none">
 							<div class="font-bold">
 								{(i + 8) % 12}:00 {i + 8 > 12 ? 'PM' : 'AM'}
 							</div>
@@ -50,15 +50,15 @@
 
 					<!-- Add more time slots here, making sure to set a fixed height -->
 				</div>
-				<div class="grid grid-cols-7 grid-rows-1 flex-1">
+				<div class="grid flex-1 grid-cols-7 grid-rows-1">
 					<div class="relative">
-						<div class="grid gap-0 hours-grid-rows grid-cols-1 grid-flow-row h-full">
+						<div class="hours-grid-rows grid h-full grid-flow-row grid-cols-1 gap-0">
 							{#each events as event, index}
 								<div style={getEventStyle(event)} class="px-2">
 									<div
 										class="event h-full {bgColors[
 											index % bgColors.length
-										]} bg-blue-300 rounded-md grid place-content-center shadow-md"
+										]} grid place-content-center rounded-md bg-blue-300 shadow-md"
 									>
 										{event.title}
 										<br />
