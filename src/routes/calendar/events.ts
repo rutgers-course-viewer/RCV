@@ -2,53 +2,33 @@ export type calEvent = {
 	start: string;
 	end: string;
 	title: string;
-	startRow: number;
-	endRow: number;
-	rowSpan: number;
-	startString: string;
-	endString: string;
+	startRow?: number;
+	endRow?: number;
+	rowSpan?: number;
+	startString?: string;
+	endString?: string;
 };
 
 export let events: calEvent[] = [
 	{
 		start: '08:00',
 		end: '09:00',
-		title: 'Event 1',
-		startRow: 0,
-		endRow: 0,
-		rowSpan: 0,
-		startString: '',
-		endString: ''
+		title: 'Event 1'
 	},
 	{
 		start: '09:30',
 		end: '10:00',
 		title: 'Event 2',
-		startRow: 0,
-		endRow: 0,
-		rowSpan: 0,
-		startString: '',
-		endString: ''
 	},
 	{
 		start: '14:00',
 		end: '16:30',
 		title: 'Event 3',
-		startRow: 0,
-		endRow: 0,
-		rowSpan: 0,
-		startString: '',
-		endString: ''
 	},
 	{
-		start: '18:00',
-		end: '22:00',
+		start: '18:15',
+		end: '22:30',
 		title: 'Event 3',
-		startRow: 0,
-		endRow: 0,
-		rowSpan: 0,
-		startString: '',
-		endString: ''
 	}
 	// ... more events
 ];
