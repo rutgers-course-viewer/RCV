@@ -1,41 +1,12 @@
 <script lang="ts">
 	let weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-	let events = [
-		{ start: '08:00', end: '09:00', title: 'Event 1' },
-		{ start: '09:30', end: '10:00', title: 'Event 2' },
-		{ start: '14:00', end: '16:30', title: 'Event 3' },
-		{ start: '18:00', end: '22:00', title: 'Event 3' }
-		// ... more events
-	];
 
 	const bgColors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500'];
 
-	// Calculate row spans for events
-	events = events.map((event) => {
-		const [startHour, startMinute] = event.start.split(':').map(Number);
-		const [endHour, endMinute] = event.end.split(':').map(Number);
+	import type { calEvent } from './events';
+	import { events } from './events';
 
-		const startString = `${startHour % 12}:${startMinute === 0 ? '00' : startMinute} ${
-			startHour > 12 ? 'PM' : 'AM'
-		}`;
-		const endString = `${endHour % 12}:${endMinute === 0 ? '00' : endMinute} ${
-			endHour > 12 ? 'PM' : 'AM'
-		}`;
-
-		const startRow = ((startHour - 8) * 60 + startMinute) / 5;
-		const endRow = ((endHour - 8) * 60 + endMinute) / 5;
-
-		return {
-			...event,
-			startRow,
-			endRow,
-			rowSpan: endRow - startRow,
-			startString,
-			endString
-		};
-	});
-
-	function getEventStyle(event: any) {
+	function getEventStyle(event: calEvent) {
 		return `grid-row-start: ${event.startRow + 1}; grid-row-end: ${event.endRow + 1}; z-index: 2;`;
 	}
 </script>
