@@ -1,14 +1,21 @@
 <script lang="ts">
-	let weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+	const getWeekdayStrings = (): string[] => {
+		return Object.keys(Weekday).filter((key) => isNaN(Number(key)));
+	};
+	let weekdays = getWeekdayStrings();
 
 	const bgColors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500'];
 
 	import type { calComponent } from './events.js';
-	import { events } from './events.js';
+	import { groupedEvents, Weekday } from './events.js';
 
 	function getEventStyle(event: calComponent) {
 		return `grid-row-start: ${event.startRow + 1}; grid-row-end: ${event.endRow + 1}; z-index: 2;`;
 	}
+
+	const getWeekday = (day: string): Weekday => {
+		return Weekday[day as keyof typeof Weekday];
+	};
 </script>
 
 <!DOCTYPE html>
@@ -51,23 +58,25 @@
 					<!-- Add more time slots here, making sure to set a fixed height -->
 				</div>
 				<div class="grid flex-1 grid-cols-7 grid-rows-1">
-					<div class="relative">
-						<div class="hours-grid-rows grid h-full grid-flow-row grid-cols-1 gap-0">
-							{#each events as event, index}
-								<div style={getEventStyle(event)} class="px-2">
-									<div
-										class="event h-full {bgColors[
-											index % bgColors.length
-										]} grid place-content-center rounded-md bg-blue-300 shadow-md"
-									>
-										{event.title}
-										<br />
-										<h3>{event.startString} - {event.endString}</h3>
+					{#each weekdays as weekday}
+						<div class="relative">
+							<div class="hours-grid-rows grid h-full grid-flow-row grid-cols-1 gap-0">
+								{#each groupedEvents[getWeekday(weekday)] as event, index}
+									<div style={getEventStyle(event)} class="px-2">
+										<div
+											class="event h-full {bgColors[
+												index % bgColors.length
+											]} grid place-content-center rounded-md bg-blue-300 shadow-md"
+										>
+											{event.title}
+											<br />
+											<h3>{event.startString} - {event.endString}</h3>
+										</div>
 									</div>
-								</div>
-							{/each}
+								{/each}
+							</div>
 						</div>
-					</div>
+					{/each}
 				</div>
 			</div>
 		</div></body
